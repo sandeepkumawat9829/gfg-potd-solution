@@ -1,0 +1,42 @@
+
+class Solution {
+    public ArrayList<ArrayList<Integer>> nQueen(int n) {
+        // code here
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        int[] board = new int[n];
+        solveNQueens(n, 0, board, result);
+        return result;
+    }
+
+    private void solveNQueens(int n, int col, int[] board, ArrayList<ArrayList<Integer>> result) {
+        if(col==n){
+            result.add(constructSolution(board, n));
+            return;
+        }
+
+        for(int row=0;row<n;row++){
+            if(isSafe(board,col,row,n)){
+                board[col]=row+1; 
+                solveNQueens(n,col+1,board,result); 
+            }
+        }
+    }
+
+    private boolean isSafe(int[] board,int col,int row,int n){
+        for(int i=0;i<col;i++){
+            int placedRow=board[i]-1;
+            if(placedRow==row|| Math.abs(placedRow-row)==Math.abs(i-col)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private ArrayList<Integer> constructSolution(int[] board, int n) {
+        ArrayList<Integer> solution=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            solution.add(board[i]);
+        }
+        return solution;
+    }
+}
