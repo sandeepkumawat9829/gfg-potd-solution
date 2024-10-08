@@ -1,21 +1,17 @@
 class Solution {
-    // function should insert the data to the front of the list
-    static Node insert(Node head, int data) {
-        // Code Here.
-        Node node = new Node(data);
-        node.npx = head;
-        return node;
-    }
-    
-
-    // function to print the linked list
-    static ArrayList<Integer> getList(Node head) {
-        // Code Here.
-        ArrayList<Integer> al = new ArrayList<>();
-        while(head != null) {
-            al.add(head.data);
-            head = head.npx;
+    public static int pairsum(int[] arr) {
+        // code here
+        int a=Integer.MIN_VALUE;
+        int b=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            if(a<arr[i]){
+                b=a;
+                a=arr[i];
+            }
+            else if(b<arr[i]){
+                b=arr[i];
+            }
         }
-        return al;
+        return a+b;
     }
 }
